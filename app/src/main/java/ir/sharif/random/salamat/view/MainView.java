@@ -1,5 +1,6 @@
 package ir.sharif.random.salamat.view;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,16 +13,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import ir.sharif.random.salamat.MainMVPInterface;
 import ir.sharif.random.salamat.R;
 import ir.sharif.random.salamat.StateMaintainer;
 import ir.sharif.random.salamat.model.localDataBase.DataBaseService;
+import ir.sharif.random.salamat.model.localDataBase.DataSource;
 import ir.sharif.random.salamat.presenter.MainPresenter;
 
 
 public class MainView extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainMVPInterface.RequiredViewOps {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        MainMVPInterface.RequiredViewOps,
+        SignUpFragment.OnFragmentInteractionListener {
 
     protected final String TAG = getClass().getSimpleName();
 
@@ -32,6 +37,7 @@ public class MainView extends AppCompatActivity
     private DataBaseService dataBaseService;
     // Presenter operations
     private MainMVPInterface.ProvidedPresenterOps mPresenter;
+    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +47,6 @@ public class MainView extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,11 +58,23 @@ public class MainView extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        dataBaseService = new DataBaseService(getApplicationContext());
+
         startMVPOps();
+
+        frameLayout = (FrameLayout) findViewById(R.id.fragment_container);
+
+        SignUpFragment signUpFragment = new SignUpFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, signUpFragment)
+                .commit();
+
+
+
     }
 
     public void startMVPOps() {
+        dataBaseService = new DataBaseService(getApplicationContext());
         try {
             if (mStateMaintainer.firstTimeIn()) {
                 Log.d(TAG, "onCreate() called for the first time");
@@ -155,5 +165,10 @@ public class MainView extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
