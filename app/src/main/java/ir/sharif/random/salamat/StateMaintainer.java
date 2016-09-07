@@ -8,9 +8,6 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
-/**
- * Created by Esmaeil Gholami on 2016/08/12.
- */
 public class StateMaintainer {
     protected final String TAG = getClass().getSimpleName();
 
