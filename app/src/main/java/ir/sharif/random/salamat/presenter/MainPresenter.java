@@ -46,8 +46,11 @@ public class MainPresenter implements MainMVPInterface.RequiredPresenterOps
 
     @Override
     public void onCreate() {
-
+        mModel.onCreate();
+        mModel.registerUser("mbahram921@gmail.com", "mb20102014");
     }
 
-
+    @Override
+    public void registeredSuccessfully() {
+    }
 }

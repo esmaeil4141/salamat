@@ -17,7 +17,6 @@ import ir.sharif.random.salamat.MainMVPInterface;
 import ir.sharif.random.salamat.R;
 import ir.sharif.random.salamat.StateMaintainer;
 import ir.sharif.random.salamat.model.localDataBase.DataBaseService;
-import ir.sharif.random.salamat.model.localDataBase.DataSource;
 import ir.sharif.random.salamat.presenter.MainPresenter;
 
 
@@ -47,7 +46,6 @@ public class MainView extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
 
@@ -62,7 +60,7 @@ public class MainView extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        dataBaseService = new DataSource(this);
+        dataBaseService = new DataBaseService(getApplicationContext());
         startMVPOps();
     }
 
