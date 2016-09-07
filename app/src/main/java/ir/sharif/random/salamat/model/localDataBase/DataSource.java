@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-
-/**
- * Created by Mojtaba on 8/13/2016.
- */
 public class DataSource implements DataBaseService {
     public final String TAG = this.getClass().getSimpleName();
     DataOpenHelper helper;

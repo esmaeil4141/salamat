@@ -1,7 +1,5 @@
 package ir.sharif.random.salamat.view;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,9 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import java.util.Locale;
 
 import ir.sharif.random.salamat.MainMVPInterface;
 import ir.sharif.random.salamat.R;
@@ -33,9 +28,9 @@ public class MainView extends AppCompatActivity
 
     // Responsible to maintain the Objects state
     // during changing configuration
-    private final StateMaintainer mStateMaintainer =
-            new StateMaintainer(this.getFragmentManager(), TAG);
-    DataBaseService dataBaseService;
+    private final StateMaintainer mStateMaintainer = new StateMaintainer(this.getFragmentManager(), TAG);
+    // DataBase operations
+    private DataBaseService dataBaseService;
     // Presenter operations
     private MainMVPInterface.ProvidedPresenterOps mPresenter;
 
